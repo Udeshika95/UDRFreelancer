@@ -43,14 +43,14 @@ jobs:
         run: pm2 stop all || true
 
       - name: Install Backend Dependencies
-        working-directory: /home/ubuntu/UDRFreelancer
+        working-directory: /home/ubuntu/UDRFreelancer/backend
         run: |
           npm install --global yarn
           yarn --version
           yarn install
 
       - name: Install Frontend Dependencies and Build
-        working-directory: /home/ubuntu/UDRFreelancer
+        working-directory: /home/ubuntu/UDRFreelancer/frontend
         run: |
           df -h
           sudo rm -rf ./build
