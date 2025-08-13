@@ -48,7 +48,6 @@ jobs:
           npm install --global yarn
           yarn --version
           yarn install
-          npx mocha
 
       - name: Install Frontend Dependencies and Build
         working-directory: /home/ubuntu/UDRFreelancer/frontend
@@ -59,11 +58,13 @@ jobs:
           yarn run build
 
       - name: Run Backend Tests
+      
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           PORT: ${{ secrets.PORT }}
-        working-directory: ./backend
+          working-directory: /home/ubuntu/UDRFreelancer/backend
+          run: npx mocha
 
         run: npm test
 
