@@ -58,6 +58,9 @@ jobs:
           yarn run build
 
       - name: Run Backend Tests
+        working-directory: /home/ubuntu/UDRFreelancer/backend
+        run: npx mocha
+        
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
