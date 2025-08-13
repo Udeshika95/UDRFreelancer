@@ -18,6 +18,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Pull latest code from main
+        run: |
+          cd /home/ubuntu/UDRFreelancer
+          git fetch origin main
+          git reset --hard origin/main
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -37,14 +43,14 @@ jobs:
         run: pm2 stop all || true
 
       - name: Install Backend Dependencies
-        working-directory: ./backend
+        working-directory: /home/ubuntu/UDRFreelancer
         run: |
           npm install --global yarn
           yarn --version
           yarn install
 
       - name: Install Frontend Dependencies and Build
-        working-directory: ./frontend
+        working-directory: /home/ubuntu/UDRFreelancer
         run: |
           df -h
           sudo rm -rf ./build
