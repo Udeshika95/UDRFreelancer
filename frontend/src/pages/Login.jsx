@@ -11,6 +11,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("////// login page")
       const response = await axiosInstance.post('/api/auth/login', formData);
       login(response.data);
       navigate('/tasks');

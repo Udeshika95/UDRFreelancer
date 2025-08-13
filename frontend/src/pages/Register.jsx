@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosConfig';
 
 const Register = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', password: '', userType: 'client' });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -11,7 +11,11 @@ const Register = () => {
     try {
       await axiosInstance.post('/api/auth/register', formData);
       alert('Registration successful. Please log in.');
-      navigate('/login');
+      if (formData.userType === 'client') {
+        navigate('/home');
+      } else {
+        navigate('/freelancer_home');
+      }
     } catch (error) {
       alert('Registration failed. Please try again.');
     }
@@ -42,6 +46,14 @@ const Register = () => {
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           className="w-full mb-4 p-2 border rounded"
         />
+        <select
+          value={formData.userType}
+          onChange={(e) => setFormData({ ...formData, userType: e.target.value })}
+          className="w-full mb-4 p-2 border rounded"
+        >
+          <option value="client">Client</option>
+          <option value="freelancer">Freelancer</option>
+        </select>
         <button type="submit" className="w-full bg-green-600 text-white p-2 rounded">
           Register
         </button>

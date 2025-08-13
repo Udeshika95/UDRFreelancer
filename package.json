@@ -13,5 +13,16 @@
     "mocha": "^11.0.1"
   },
   "author": "Task Manager Team",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.1",
+    "react": "^19.1.1",
+    "react-script": "^2.0.5",
+    "scripts": "^0.1.0"
+  }
 }
