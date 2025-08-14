@@ -1,5 +1,5 @@
 const express = require('express');
-const { saveBids,readByGigId, deleteBid } = require('../controllers/freelancerController');
+const { saveBids,readByGigId, deleteBid, editBid } = require('../controllers/freelancerController');
 const { protect } = require('../middleware/authMiddleware');
 
 const router = express.Router();
@@ -8,5 +8,6 @@ const router = express.Router();
 router.post('/saveBid', protect, saveBids);
 router.get('/getBidByGigId/:gigId', protect, readByGigId);
 router.delete('/deleteBidById/:bidId', protect, deleteBid);
+router.put('/updateBidById/:bidId', protect, editBid);
 
 module.exports = router

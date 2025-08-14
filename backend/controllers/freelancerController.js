@@ -37,4 +37,13 @@ const deleteBid = async (req, res) => {
     }
 };
 
-module.exports = { saveBids, readByGigId, deleteBid }
+const editBid = async (req, res) => {
+    try {
+        const bid = await Bid.findByIdAndUpdate(req.params.bidId, req.body, { new: true });
+        if (!bid) return res.status(404).json({ message: 'Bid not found' });
+        res.status(200).json(bid);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+module.exports = { saveBids, readByGigId, deleteBid, editBid }

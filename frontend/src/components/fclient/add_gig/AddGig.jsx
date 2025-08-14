@@ -25,12 +25,16 @@ const validate = (data) => {
 const AddGig = ({ open, onClose, onSubmit, gig }) => {
     const { user } = useAuth();
     const token = user?.token;
+    const userId = user?.id
+    console.log("user"+userId)
+
     const initialFormState = {
         gigName: '',
         gigDescription: '',
         minGigBudget: '',
         maxGigBudget: '',
         skills: [],
+        clientId: userId
     };
 
     const [formData, setFormData] = useState(initialFormState);
@@ -47,6 +51,7 @@ const AddGig = ({ open, onClose, onSubmit, gig }) => {
                 minGigBudget: gig.minGigBudget || '',
                 maxGigBudget: gig.maxGigBudget || '',
                 skills: gig.skills || [],
+                clientId: gig.userId
             });
         } else {
             setFormData(initialFormState);

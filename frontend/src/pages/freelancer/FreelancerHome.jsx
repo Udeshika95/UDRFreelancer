@@ -13,7 +13,7 @@ const FreelancerHome = () => {
     const { user } = useAuth();
     const token = user?.token;
     const userId = user?.id;
-    
+
     useEffect(() => {
 
         fetchGigs()
@@ -43,6 +43,7 @@ const FreelancerHome = () => {
             {gigs.length > 0 ? (
                 gigs.map((gig, idx) => (
                     <FreelancerGig
+                        gigId={gig._id}
                         key={idx}
                         title={gig.gigName}
                         description={gig.gigDescription}
@@ -58,7 +59,7 @@ const FreelancerHome = () => {
                 </div>
             )}
 
-            <BidForm open={bidFormState} onClose={() => { setFormState(false) }} gig={gig} />
+            <BidForm open={bidFormState} onClose={() => { setFormState(false) }} gigId={gig._id} />
 
         </div>
     );

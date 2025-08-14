@@ -7,7 +7,7 @@ const router = express.Router();
 // All freelancer routes require authentication
 router.post('/saveGig', protect, saveGig);
 router.get('/viewAllGigs', protect, viewAllGigs);
-router.get('/viewGigs/:id', protect, viewGigsByClient);
+router.get('/viewGigs/:clientId', protect, viewGigsByClient);
 router.delete('/deleteGig/:id', protect, deleteGig);
 router.put('/editGig/:id', protect, editGig);
 
