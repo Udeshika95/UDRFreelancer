@@ -1,0 +1,99 @@
+.gig-card {
+  width: 60vw;
+  margin: 2vh auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 2.5rem 1rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.gig-client-card {
+  width: 100%;
+  margin: 2vh auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.gig-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.gig-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.gig-budget {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2563eb;
+  margin-top: 0.2rem;
+}
+
+.gig-description {
+  width: 90%;
+  padding-bottom: 5%;
+  font-size: 1rem;
+  color: #374151;
+}
+
+.gig-labels {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.gig-label {
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.70rem;
+  font-weight: 500;
+}
+
+.gig-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.gig-rating {
+  font-size: 1.1rem;
+  color: #f59e42;
+  font-weight: 600;
+}
+
+.gig-apply-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.15);
+  transition: background 0.2s;
+}
+
+.gig-apply-btn:hover {
+     background: #1e40af;
+}

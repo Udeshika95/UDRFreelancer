@@ -56,7 +56,6 @@ const ClientHome = () => {
         closeGigPopup();
     };
 
-
     return (
         <div className="client-home-container">
             <div className="client-home-header-row">
