@@ -38,7 +38,7 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
       </div>
 
       <div className="gig-actions" style={{ color: '#6d6d6d' }}>
-        <button className="gig-action-btn gig-edit-btn">
+        <button className="gig-action-btn gig-edit-btn" onClick={() => onEdit && onEdit(gig)}>
           <span className="gig-action-icon">✏️</span> Edit
         </button>
 

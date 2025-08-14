@@ -19,6 +19,8 @@ const ClientHome = () => {
     const [toastErrorOpen, setToastErrorOpen] = useState(false);
     const [errorMessafe, setToastErrorMsg] = useState('');
     const [gigs, setGigs] = useState([]);
+    // edit
+    const [gig, setSelectedGig] = useState(null);
 
     useEffect(() => {
         console.log('userId ' + userId)
@@ -41,6 +43,7 @@ const ClientHome = () => {
 
     // Method to open gig popup
     const openGigPopup = () => {
+        setSelectedGig(null)
         setShowGigPopup(true);
     };
 
@@ -78,6 +81,13 @@ const ClientHome = () => {
 
     };
 
+    const editGig = (gig) => {
+        // Logic to edit gig
+        console.log('Editing gig:', gig);
+        setSelectedGig(gig);
+        setShowGigPopup(true);
+    };
+
     return (
         <div className="client-home-container">
             <div className="client-home-header-row">
@@ -90,7 +100,7 @@ const ClientHome = () => {
                 <div className="client-home-left">
                     <div className="gigs-list">
                         {gigs.map(gig => (
-                            <MyGig key={gig.id} gig={gig} onDelete={() => deleteGig(gig)} />
+                            <MyGig key={gig.id} gig={gig} onDelete={() => deleteGig(gig)} onEdit={() => editGig(gig)} />
                         ))}
                     </div>
                 </div>
@@ -98,7 +108,7 @@ const ClientHome = () => {
                     <h2 className="section-title-2">Top Freelancers</h2>
 
                 </div>
-                <AddGig open={showGigPopup} onClose={closeGigPopup} onSubmit={handleGigSubmit} />
+                <AddGig open={showGigPopup} onClose={closeGigPopup} onSubmit={handleGigSubmit} gig={gig} />
                 <Toast open={toastOpen} message={toastMsg} setOpen={setToastOpen} />
                 <ErrorToast open={toastErrorOpen} message={errorMessafe} setErrorOpen={setToastErrorOpen} />
             </div>
