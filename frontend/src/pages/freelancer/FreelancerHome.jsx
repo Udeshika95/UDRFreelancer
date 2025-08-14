@@ -13,6 +13,7 @@ const FreelancerHome = () => {
     const { user } = useAuth();
     const token = user?.token;
     const userId = user?.id;
+    
     useEffect(() => {
 
         fetchGigs()
