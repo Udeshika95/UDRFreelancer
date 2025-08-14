@@ -24,6 +24,10 @@ const FreelancerHome = () => {
         setSelectedGig(gig)
     };
 
+    const onBidUpdate = () => {
+        console.log("Updated")
+        fetchGigs()
+    }
     const fetchGigs = async () => {
         try {
             console.log('Fetching gigs for freelancer home');
@@ -59,7 +63,7 @@ const FreelancerHome = () => {
                 </div>
             )}
 
-            <BidForm open={bidFormState} onClose={() => { setFormState(false) }} gigId={gig._id} />
+            <BidForm open={bidFormState} onClose={() => { setFormState(false) }} gigId={gig._id} onUpdate={() => onBidUpdate()} />
 
         </div>
     );

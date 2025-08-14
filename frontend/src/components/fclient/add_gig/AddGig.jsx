@@ -26,7 +26,7 @@ const AddGig = ({ open, onClose, onSubmit, gig }) => {
     const { user } = useAuth();
     const token = user?.token;
     const userId = user?.id
-    console.log("user"+userId)
+    console.log("user" + userId)
 
     const initialFormState = {
         gigName: '',
@@ -56,7 +56,7 @@ const AddGig = ({ open, onClose, onSubmit, gig }) => {
         } else {
             setFormData(initialFormState);
         }
-    }, [gig, open]);
+    }, [gig, open, initialFormState]);
 
     if (!open) return null;
 

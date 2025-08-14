@@ -23,10 +23,6 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
     fetchBidsByGigId()
   }, [token]);
 
-  const openGigPopup = () => {
-    setShowGigPopup(true);
-  };
-
   // Method to close gig popup
   const closeGigPopup = () => {
     setShowGigPopup(false);

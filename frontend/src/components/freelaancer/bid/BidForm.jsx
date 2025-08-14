@@ -90,9 +90,9 @@ const BidForm = ({ open, onClose, gigId, bid, onUpdate }) => {
 
                 setTimeout(() => {
                     setServerMessage(null);
-                    if(bid){
+                    //if(bid){
                         onUpdate()
-                    }
+                    //}
                     handleClose();
                 }, 1500);
             } catch (error) {
