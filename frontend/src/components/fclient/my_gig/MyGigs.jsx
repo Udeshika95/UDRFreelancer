@@ -41,9 +41,9 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
         <button className="gig-action-btn gig-edit-btn">
           <span className="gig-action-icon">✏️</span> Edit
         </button>
-        &nbsp;
+      
         |
-        &nbsp;
+     
         <button className="gig-action-btn gig-delete-btn">
           <span className="gig-action-icon">🗑️</span> Delete
         </button>
