@@ -1,0 +1,94 @@
+.gig-client-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  min-width: 700px;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+
+.gig-client-card:hover {
+  box-shadow: 0 4px 24px rgba(37,99,235,0.12);
+}
+
+.gig-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gig-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.gig-budget {
+  font-size: 1.1rem;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.gig-description {
+  margin-top: 0.7rem;
+  color: #334155;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.gig-bids-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #2563eb;
+}
+
+.gig-no-bids {
+  color: #64748b;
+  font-style: italic;
+}
+
+.gig-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.gig-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+}
+
+.gig-action-btn:hover {
+  background: #f1f5f9;
+}
+
+.gig-edit-btn .gig-action-icon {
+  font-size: 1.1rem;
+}
+
+.gig-delete-btn {
+  color: #ef4444;
+}
+
+.gig-delete-btn .gig-action-icon {
+  font-size: 1.1rem;
+}
