@@ -39,6 +39,20 @@ const AddGig = ({ open, onClose, onSubmit, gig }) => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [serverMessage, setServerMessage] = useState(null);
 
+    useEffect(() => {
+        if (gig) {
+            setFormData({
+                gigName: gig.gigName || '',
+                gigDescription: gig.gigDescription || '',
+                minGigBudget: gig.minGigBudget || '',
+                maxGigBudget: gig.maxGigBudget || '',
+                skills: gig.skills || [],
+            });
+        } else {
+            setFormData(initialFormState);
+        }
+    }, [gig, open]);
+
     if (!open) return null;
 
     const handleSkillAdd = (skill) => {
@@ -81,15 +95,22 @@ const AddGig = ({ open, onClose, onSubmit, gig }) => {
         e.preventDefault();
         const validationErrors = validate(formData);
         setErrors(validationErrors);
-        console.log(" token "+token)
+        console.log(" token " + token)
         if (Object.keys(validationErrors).length === 0) {
             try {
+                if (gig) {
+                    await axiosInstance.put(`/api/client/editGig/${gig._id}`, formData, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    setServerMessage({ type: 'success', text: 'Gig updated successfully!' });
+                } else {
+                    await axiosInstance.post('/api/client/saveGig', formData, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    setServerMessage({ type: 'success', text: 'Gig submitted successfully!' });
 
-                await axiosInstance.post('/api/client/saveGig', formData, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                }
 
-                setServerMessage({ type: 'success', text: 'Gig submitted successfully!' });
                 if (onSubmit) onSubmit(formData);
                 setTimeout(() => {
                     setServerMessage(null);
