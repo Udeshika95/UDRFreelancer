@@ -42,6 +42,9 @@ jobs:
       - name: Stop PM2 Processes
         run: pm2 stop all || true
 
+      - name: Build frontend
+        run: CI=false yarn build
+
       - name: Install Backend Dependencies
         working-directory: /home/ubuntu/UDRFreelancer/backend
         run: |
