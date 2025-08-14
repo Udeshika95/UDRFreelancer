@@ -47,13 +47,35 @@ const ClientHome = () => {
     // Method to close gig popup
     const closeGigPopup = () => {
         setShowGigPopup(false);
-         fetchGigs()
+        fetchGigs()
     };
 
     // Optional: handle gig submit
     const handleGigSubmit = (gigData) => {
         // You can handle gig data here (e.g., send to API)
         closeGigPopup();
+    };
+
+    // Delete Gig 
+    const deleteGig = async (gig) => {
+        // Logic to edit gig
+        console.log('Delete gig:', gig);
+        if (window.confirm('Are you sure you want to delete this gig?')) {
+            try {
+                await axiosInstance.delete(`/api/client/deleteGig/${gig._id}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                fetchGigs();
+                // toast message
+                setToastOpen(true);
+                setToastMsg('Gig deleted successfully!');
+            } catch (error) {
+                console.error('Error fetching gigs:', error);
+                setToastErrorOpen(true);
+                setToastErrorMsg('Failed to delete gig. Please try again.');
+            }
+        }
+
     };
 
     return (
@@ -68,7 +90,7 @@ const ClientHome = () => {
                 <div className="client-home-left">
                     <div className="gigs-list">
                         {gigs.map(gig => (
-                            <MyGig key={gig.id} gig={gig} />
+                            <MyGig key={gig.id} gig={gig} onDelete={() => deleteGig(gig)} />
                         ))}
                     </div>
                 </div>
