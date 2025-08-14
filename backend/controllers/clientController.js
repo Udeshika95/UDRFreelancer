@@ -34,4 +34,16 @@ const viewGigsByClient = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-module.exports = { saveGig, viewAllGigs,viewGigsByClient }
+
+// Delete Gig
+const deleteGig = async (req, res) => {
+    try {
+        const gig = await Gig.findByIdAndDelete(req.params.id);
+        if (!gig) return res.status(404).json({ message: 'Gig not found' });
+        res.status(200).json({ message: 'Gig deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { saveGig, viewAllGigs, viewGigsByClient,deleteGig }

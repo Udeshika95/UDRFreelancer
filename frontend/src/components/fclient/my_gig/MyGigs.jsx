@@ -36,16 +36,16 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
       <div className="gig-description" style={{ width: '90%' }}>
         {truncateWords(gig.gigDescription, 100)}
       </div>
-      
+
       <div className="gig-actions" style={{ color: '#6d6d6d' }}>
         <button className="gig-action-btn gig-edit-btn">
           <span className="gig-action-icon">✏️</span> Edit
         </button>
-      
+
         |
-     
-        <button className="gig-action-btn gig-delete-btn">
-          <span className="gig-action-icon">🗑️</span> Delete
+
+        <button className="gig-action-btn gig-delete-btn" onClick={() => onDelete && onDelete(gig)}>
+          <span className="gig-action-icon" >🗑️</span> Delete
         </button>
         <AddGig open={showGigPopup} onClose={closeGigPopup} onSubmit={handleGigSubmit} gig={null} />
       </div>
