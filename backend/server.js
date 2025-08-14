@@ -1,4 +1,3 @@
-
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -13,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/client', require('./routes/clientRout'));
+app.use('/api/freelancer', require('./routes/freelancerRoutes'));
 
 // Export the app object for testing
 if (require.main === module) {
