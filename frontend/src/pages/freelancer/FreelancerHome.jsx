@@ -3,19 +3,25 @@ import axiosInstance from '../../axiosConfig';
 import FreelancerGig from '../../components/freelaancer/show_gigs/FreelancerGig';
 import './freelancer.home.css';
 import { useAuth } from '../../context/AuthContext';
+import BidForm from '../../components/freelaancer/bid/BidForm'
 
 const FreelancerHome = () => {
     const [gigs, setGigs] = useState([]);
+    const [bidFormState, setFormState] = useState(false);
+    const [gig, setSelectedGig] = useState(false);
+
     const { user } = useAuth();
     const token = user?.token;
     const userId = user?.id;
+    
     useEffect(() => {
 
         fetchGigs()
     }, [userId, token]);
 
-    const handleApply = () => {
-      
+    const handleApply = (gig) => {
+        setFormState(true)
+        setSelectedGig(gig)
     };
 
     const fetchGigs = async () => {
@@ -43,7 +49,7 @@ const FreelancerHome = () => {
                         budget={`$${gig.minGigBudget} - $${gig.maxGigBudget}`}
                         labels={gig.skills}
                         rating={5}
-                        onApply={handleApply}
+                        onApply={() => handleApply(gig)}
                     />
                 ))
             ) : (
@@ -52,6 +58,7 @@ const FreelancerHome = () => {
                 </div>
             )}
 
+            <BidForm open={bidFormState} onClose={() => { setFormState(false) }} gig={gig} />
 
         </div>
     );
