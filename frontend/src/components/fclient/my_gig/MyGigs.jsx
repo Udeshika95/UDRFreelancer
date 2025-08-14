@@ -21,7 +21,7 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
 
   useEffect(() => {
     console.log('token ' + token)
-    fetBidsByGigId()
+    fetchBidsByGigId()
   }, [token]);
 
   const openGigPopup = () => {
@@ -37,7 +37,11 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
   const handleGigSubmit = () => {
 
   }
-  const fetBidsByGigId = async () => {
+
+  const onDeleteBid = () => {
+    fetchBidsByGigId()
+  }
+  const fetchBidsByGigId = async () => {
     try {
       const response = await axiosInstance.get(`/api/freelancer/getBidByGigId/${gig._id}`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -66,7 +70,7 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
           <div style={{ color: '#64748b', fontStyle: 'italic', marginBottom: '50px' }}>No bids yet.</div>
         ) : (
           bids.map(bid => (
-            <Bid key={bid.bidId} bid={bid} />
+            <Bid key={bid.bidId} bid={bid} onDelete={() => onDeleteBid()} />
           ))
         )}
       </div>
