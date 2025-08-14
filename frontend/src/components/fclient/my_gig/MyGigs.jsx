@@ -18,7 +18,6 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
   const { user } = useAuth();
   const token = user?.token;
 
-
   useEffect(() => {
     console.log('token ' + token)
     fetchBidsByGigId()
@@ -47,7 +46,6 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setBids(response.data);
-      console.log("///// " + bids)
     } catch (error) {
       console.error('Error fetching gigs:', error);
     }
@@ -70,7 +68,7 @@ const MyGigs = ({ gig, onEdit, onDelete }) => {
           <div style={{ color: '#64748b', fontStyle: 'italic', marginBottom: '50px' }}>No bids yet.</div>
         ) : (
           bids.map(bid => (
-            <Bid key={bid.bidId} bid={bid} onDelete={() => onDeleteBid()} />
+            <Bid key={bid.bidId} bid={bid} onDelete={() => onDeleteBid()} onClose={() => onDeleteBid()} />
           ))
         )}
       </div>

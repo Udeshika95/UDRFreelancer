@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './bid.css';
 import { useAuth } from '../../../context/AuthContext';
 import axiosInstance from '../../../axiosConfig';
+import BidForm from '../../../components/freelaancer/bid/BidForm'
 
 const truncateWords = (text, numWords) => {
   const words = text.split(' ');
@@ -10,11 +11,14 @@ const truncateWords = (text, numWords) => {
     : text;
 };
 
-const Bid = ({ bid, onDelete }) => {
+const Bid = ({ bid, onDelete, onUpdate }) => {
 
   const { user } = useAuth();
   const token = user?.token;
+  const userId = user?.id;
+
   const [freelancer, setUser] = useState('');
+  const [isOpen, setOpenState] = useState(false);
 
   useEffect(() => {
     console.log('token ' + token)
@@ -29,9 +33,9 @@ const Bid = ({ bid, onDelete }) => {
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching gigs:', error);
-
     }
   };
+
 
   const deleteBid = async () => {
     if (window.confirm('Are you sure you want to delete this Bid?')) {
@@ -42,9 +46,18 @@ const Bid = ({ bid, onDelete }) => {
         onDelete()
       } catch (error) {
         console.error('Error Deleteing bit:', error);
-
       }
     }
+  }
+
+  const onClose = () => {
+    setOpenState(false)
+    //onUpdate()
+  }
+
+  const onUpdateBid = () => {
+    onUpdate()
+     setOpenState(true)
   }
 
   return (
@@ -67,12 +80,13 @@ const Bid = ({ bid, onDelete }) => {
 
       </div>
       <div className="bid-actions">
-        <button className="bid-view-btn-extra">Edit</button>
-        <button className="bid-view-btn-extra" onClick={() => deleteBid()}>Delete</button>
-        <button className="bid-view-btn-extra">Accept</button>
+        {bid.freelancerId == userId ? <button className="bid-view-btn-extra" onClick={() => onUpdateBid()}>Edit</button> : <dive></dive>}
+        {bid.freelancerId == userId ? <button className="bid-view-btn-extra" onClick={() => deleteBid()}>Delete</button> : <dive></dive>}
+        {bid.freelancerId != userId ? <button className="bid-view-btn-extra">Accept</button> : <dive></dive>}
       </div>
+      <BidForm open={isOpen} onClose={() => onClose()} gigId={bid.gigId} bid={bid} onUpdate={() => onUpdateBid()} />
 
-    </div>
+    </div >
   );
 };
 

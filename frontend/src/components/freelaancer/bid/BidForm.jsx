@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import './bid.form.css';
 import axiosInstance from '../../../axiosConfig';
 
-const BidForm = ({ open, onClose, gig, bid }) => {
-    
+const BidForm = ({ open, onClose, gigId, bid, onUpdate }) => {
+
     const initialState = {
         minBidRange: '',
         maxBidRange: '',
@@ -16,6 +16,19 @@ const BidForm = ({ open, onClose, gig, bid }) => {
     const { user } = useAuth();
     const token = user?.token;
     const userId = user?.id;
+
+    useEffect(() => {
+        if (bid) {
+            setFormData({
+                minBidRange: bid.minBid || '',
+                maxBidRange: bid.maxBid || '',
+                message: bid.description || '',
+            });
+        } else {
+            setFormData(initialState);
+        }
+    }, [bid]);
+
     if (!open) return null;
 
     const validate = (data) => {
@@ -48,24 +61,47 @@ const BidForm = ({ open, onClose, gig, bid }) => {
         setErrors(validationErrors);
         setServerMessage(null);
         if (Object.keys(validationErrors).length === 0) {
-            console.log(gig)
+
             try {
-                await axiosInstance.post('/api/freelancer/saveBid', {
-                    freelancerId: userId,
-                    gigId: gig._id,
-                    minBid: formData.minBidRange,
-                    maxBid: formData.maxBidRange,
-                    description: formData.message
-                }, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                setServerMessage({ type: 'success', text: 'Bid submitted successfully!' });
+                if (bid) {
+                    await axiosInstance.put(`/api/freelancer/updateBidById/${bid._id}`, {
+                        freelancerId: userId,
+                        gigId: gigId,
+                        minBid: formData.minBidRange,
+                        maxBid: formData.maxBidRange,
+                        description: formData.message
+                    }, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    setServerMessage({ type: 'success', text: 'Bid Updeted successfully!' });
+                } else {
+                    await axiosInstance.post('/api/freelancer/saveBid', {
+                        freelancerId: userId,
+                        gigId: gigId,
+                        minBid: formData.minBidRange,
+                        maxBid: formData.maxBidRange,
+                        description: formData.message
+                    }, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+
+                    setServerMessage({ type: 'success', text: 'Bid submitted successfully!' });
+                }
+
                 setTimeout(() => {
                     setServerMessage(null);
+                    if(bid){
+                        onUpdate()
+                    }
                     handleClose();
                 }, 1500);
             } catch (error) {
-                setServerMessage({ type: 'error', text: 'Failed to submit bid. Please try again.' });
+                if (bid) {
+                    setServerMessage({ type: 'error', text: 'Failed to update bid. Please try again.' });
+                } else {
+                    setServerMessage({ type: 'error', text: 'Failed to submit bid. Please try again.' });
+
+                }
             }
         }
     };
@@ -79,7 +115,7 @@ const BidForm = ({ open, onClose, gig, bid }) => {
                     aria-label="Close"
                 >✖</button>
                 <form onSubmit={handleSubmit}>
-                    <h2 className="bid-form-title">Place Your Bid</h2>
+                    <h2 className="bid-form-title">{bid ? "Update Your Bid" : "Place Your Bid"}</h2>
                     {serverMessage && (
                         <div
                             style={{
@@ -130,7 +166,7 @@ const BidForm = ({ open, onClose, gig, bid }) => {
                             type="submit"
                             className="bid-form-submit-btn"
                         >
-                            Submit
+                            {bid ? "Update" : "Submit"}
                         </button>
                     </div>
                 </form>

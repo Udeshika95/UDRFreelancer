@@ -58,4 +58,4 @@ const editGig = async (req, res) => {
 };
 
 
-module.exports = { saveGig, viewAllGigs, viewGigsByClient,deleteGig,editGig }
+module.exports = { saveGig, viewAllGigs, viewGigsByClient, deleteGig, editGig }
