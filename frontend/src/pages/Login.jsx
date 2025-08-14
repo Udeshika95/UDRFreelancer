@@ -14,7 +14,11 @@ const Login = () => {
       console.log("////// login page")
       const response = await axiosInstance.post('/api/auth/login', formData);
       login(response.data);
-      navigate('/tasks');
+      if (response.data.userType === 'client') {
+        navigate('/client_home');
+      } else {
+        navigate('/freelancer_home');
+      }
     } catch (error) {
       alert('Login failed. Please try again.');
     }

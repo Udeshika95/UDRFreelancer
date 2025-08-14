@@ -12,7 +12,7 @@ const Register = () => {
       await axiosInstance.post('/api/auth/register', formData);
       alert('Registration successful. Please log in.');
       if (formData.userType === 'client') {
-        navigate('/home');
+        navigate('/client_home');
       } else {
         navigate('/freelancer_home');
       }
