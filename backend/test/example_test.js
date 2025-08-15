@@ -46,7 +46,6 @@ describe('protect middleware', () => {
     });
 
 
-
     it('should return 401 if token is invalid', async () => {
         const req = {
             headers: { authorization: 'Bearer invalidtoken' }

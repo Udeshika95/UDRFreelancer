@@ -6,6 +6,7 @@ import Toast from '../../components/udr/Toast';
 import ErrorToast from '../../components/udr/ErrorToast';
 import axiosInstance from '../../axiosConfig';
 import MyGig from '../../components/fclient/my_gig/MyGigs'
+import User from '../../components/freelaancer/User'
 const ClientHome = () => {
 
     const { user } = useAuth();
@@ -20,11 +21,19 @@ const ClientHome = () => {
     const [gigs, setGigs] = useState([]);
     // edit
     const [gig, setSelectedGig] = useState(null);
+    const [freelancers, setFreelancers] = useState([]);
 
     useEffect(() => {
         console.log('userId ' + userId)
         console.log('token ' + token)
         fetchGigs()
+
+        axiosInstance.get('/api/freelancer/getFreelancers', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(res => setFreelancers(res.data))
+            .catch(() => console.log(" Error"));
+
     }, [userId, token]);
 
     const fetchGigs = async () => {
@@ -105,7 +114,11 @@ const ClientHome = () => {
                 </div>
                 <div className="client-home-right">
                     <h2 className="section-title-2">Top Freelancers</h2>
-
+                    <div className="freelancers-list">
+                        {freelancers.map(user => (
+                            <User key={user.id} user={user} />
+                        ))}
+                    </div>
                 </div>
                 <AddGig open={showGigPopup} onClose={closeGigPopup} onSubmit={handleGigSubmit} gig={gig} />
                 <Toast open={toastOpen} message={toastMsg} setOpen={setToastOpen} />

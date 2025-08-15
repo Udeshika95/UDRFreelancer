@@ -1,4 +1,5 @@
 const Bid = require('../models/Bid');
+const User = require('../models/User');
 
 // Save Bid
 const saveBids = async (req, res) => {
@@ -46,4 +47,14 @@ const editBid = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-module.exports = { saveBids, readByGigId, deleteBid, editBid }
+
+const getFreelancers = async (req, res) => {
+    try {
+        console.log("Fetching freelancers...");
+        const freelancers = await User.find({ userType: 'freelancer' });
+        res.status(200).json(freelancers);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+module.exports = { saveBids, readByGigId, deleteBid, editBid, getFreelancers }
