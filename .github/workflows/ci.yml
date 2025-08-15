@@ -43,7 +43,7 @@ jobs:
         run: pm2 stop all || true
 
       - name: Build frontend
-        run: CI=false yarn build
+        run: cd frontend && CI=false yarn build
 
       - name: Install Backend Dependencies
         working-directory: /home/ubuntu/UDRFreelancer/backend
