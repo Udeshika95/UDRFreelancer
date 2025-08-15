@@ -62,13 +62,15 @@ npm start
 # Start frontend (in /frontend)
 npm start
 
+```
+
 ## Test Users
 
-### **Clients**
+## Clients
 - **Username:** mark@gmail.com | **Password:** 1234  
 - **Username:** udeshika@gmail.com | **Password:** 1234  
 
-### **Freelancers**
+## Freelancers
 - **Username:** jon@gmail.com | **Password:** 1234  
 - **Username:** jack@gmail.com | **Password:** 1234  
 
