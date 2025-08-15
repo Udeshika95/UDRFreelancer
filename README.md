@@ -63,6 +63,13 @@ npm start
 npm start
 
 ## 🛠 Test Users
-- **Client username and passwords** mark@gmail.com/pw:1234, Udeshika@gmail.com/pw:1234
-- **Freelancers username and passwords:** jon@gmail.com/pw:1234, jack@gmail.com/pw:1234 
+
+### **Clients**
+- **Username:** mark@gmail.com | **Password:** 1234  
+- **Username:** udeshika@gmail.com | **Password:** 1234  
+
+### **Freelancers**
+- **Username:** jon@gmail.com | **Password:** 1234  
+- **Username:** jack@gmail.com | **Password:** 1234  
+
 
