@@ -80,9 +80,9 @@ const Bid = ({ bid, onDelete, onUpdate }) => {
 
       </div>
       <div className="bid-actions">
-        {bid.freelancerId == userId ? <button className="bid-view-btn-extra" onClick={() => onUpdateBid()}>Edit</button> : <dive></dive>}
-        {bid.freelancerId == userId ? <button className="bid-view-btn-extra" onClick={() => deleteBid()}>Delete</button> : <dive></dive>}
-        {bid.freelancerId != userId ? <button className="bid-view-btn-extra">Accept</button> : <dive></dive>}
+        {bid.freelancerId === userId ? <button className="bid-view-btn-extra" onClick={() => onUpdateBid()}>Edit</button> : <dive></dive>}
+        {bid.freelancerId === userId ? <button className="bid-view-btn-extra" onClick={() => deleteBid()}>Delete</button> : <dive></dive>}
+        {bid.freelancerId !== userId ? <button className="bid-view-btn-extra">Accept</button> : <dive></dive>}
       </div>
       <BidForm open={isOpen} onClose={() => onClose()} gigId={bid.gigId} bid={bid} onUpdate={() => onUpdateBid()} />
 
