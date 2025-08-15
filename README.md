@@ -1,4 +1,4 @@
-# UDRFreelance – A SysML-Driven Freelance Marketplace
+# UDRFreelance – Freelance Marketplace
 
 UDRFreelance is a **full-stack web-based freelance marketplace platform** developed to demonstrate **software life cycle management principles**, **system modelling with SysML**, **agile project management**, and **DevOps practices**.
 
@@ -8,7 +8,7 @@ Originally built upon a task manager application, it was **re-engineered** to se
 
 ---
 
-## 🚀 Features
+## Features
 - User authentication (client & freelancer roles)
 - Post and manage gigs
 - Submit and manage bids
@@ -17,7 +17,7 @@ Originally built upon a task manager application, it was **re-engineered** to se
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 - **Frontend:** ReactJS  
 - **Backend:** Node.js + Express.js  
 - **Database:** MongoDB  
@@ -25,7 +25,7 @@ Originally built upon a task manager application, it was **re-engineered** to se
 
 ---
 
-## 📐 SysML Modelling
+## SysML Modelling
 SysML diagrams created for:
 - Use Case, Activity, Sequence Diagrams
 - Block Definition Diagram (BDD)
@@ -35,12 +35,12 @@ SysML diagrams created for:
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 
 ---
 
-## 📦 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (v16+ recommended)
@@ -62,7 +62,7 @@ npm start
 # Start frontend (in /frontend)
 npm start
 
-## 🛠 Test Users
+## Test Users
 
 ### **Clients**
 - **Username:** mark@gmail.com | **Password:** 1234  
